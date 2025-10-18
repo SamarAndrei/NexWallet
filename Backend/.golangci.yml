@@ -1,14 +1,26 @@
 run:
   timeout: 5m
+  skip-dirs:
+    - vendor
 
 linters:
   enable:
-    - govet
-    - errcheck
-    - staticcheck
-    - ineffassign
-    - gosimple
-    - unused
+    - govet        # стандартные проверки
+    - errcheck     # проверка игнорируемых ошибок
+    - staticcheck  # статический анализ кода
+    - gosimple     # упрощения кода
+    - ineffassign  # неэффективные присваивания
+    - deadcode     # мертвый код
+    - structcheck  # неиспользуемые поля структур
+    - varcheck     # неиспользуемые переменные/константы
+    - unused       # проверки неиспользуемого кода
+    - typecheck    # проверка типов
+    - gofmt        # проверка форматирования кода
+    - goimports    # проверка импортов
+  disable:
+    - maligned    # можно отключить, если не критично
 
 issues:
   exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
